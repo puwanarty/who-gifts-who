@@ -3,7 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: clamp(1rem, 5vmin, 4rem) 16px;
+  /* The top matches the other screens, leaving room for the fixed sound and fullscreen buttons. */
+  padding: clamp(3rem, 7vmin, 5rem) 16px clamp(1rem, 5vmin, 4rem);
 }
 
 .setup-sheet {

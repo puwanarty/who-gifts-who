@@ -1,0 +1,27 @@
+/* Mirrors the restart button in the opposite corner. */
+.screen-controls {
+  position: fixed;
+  top: clamp(0.5rem, 2vmin, 1.5rem);
+  left: clamp(0.5rem, 2vmin, 1.5rem);
+  z-index: 10;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.screen-control {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  opacity: 0.55;
+  font-size: clamp(0.85rem, 1.6vmin, 1.4rem);
+  padding: 0.4em 0.8em;
+  border-radius: 999px;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.screen-control:hover,
+.screen-control:focus-visible {
+  opacity: 1;
+  background: rgb(255 250 242 / 0.5);
+}
