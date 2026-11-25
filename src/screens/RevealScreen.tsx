@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Confetti } from '../components/Confetti'
 import { GiftBox, type GiftBoxStage } from '../components/GiftBox'
 import { RestartButton } from '../components/RestartButton'
+import { playDrumroll, playReveal } from '../sound/sound'
 import { useAppState } from '../state/AppStateContext'
 import './RevealScreen.css'
 
@@ -23,14 +24,22 @@ export function RevealScreen() {
   const [stage, setStage] = useState<GiftBoxStage>(alreadyRevealed ? 'opened' : 'idle')
   const [canFinish, setCanFinish] = useState(alreadyRevealed)
   const timers = useRef<number[]>([])
+  const stopDrumroll = useRef<() => void>(() => {})
 
-  useEffect(() => () => timers.current.forEach((timer) => window.clearTimeout(timer)), [])
+  useEffect(
+    () => () => {
+      timers.current.forEach((timer) => window.clearTimeout(timer))
+      stopDrumroll.current()
+    },
+    [],
+  )
 
   function later(callback: () => void, delayMs: number) {
     timers.current.push(window.setTimeout(callback, delayMs))
   }
 
   function open() {
+    playReveal()
     setStage('opened')
     later(() => setCanFinish(true), FINISH_GUARD_MS)
   }
@@ -46,6 +55,7 @@ export function RevealScreen() {
       return
     }
     setStage('shaking')
+    stopDrumroll.current = playDrumroll(SHAKE_DURATION_MS)
     later(open, SHAKE_DURATION_MS)
   }
 
