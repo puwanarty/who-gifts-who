@@ -1,0 +1,15 @@
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.confetti-piece {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(6px, 1.2vmin, 18px);
+  height: clamp(10px, 2vmin, 30px);
+  border-radius: 2px;
+}
