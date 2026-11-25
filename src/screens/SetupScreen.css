@@ -82,6 +82,10 @@
 .setup-name::placeholder {
   color: rgb(43 29 18 / 0.4);
   font-weight: 500;
+  /* Chrome forces line-height: normal on the placeholder and clips it, cutting off Mali's
+     stacked Thai marks (the "ื่" in "ชื่อ"); the padding makes room, the margin keeps its position. */
+  padding-top: 0.4em;
+  margin-top: -0.4em;
 }
 
 .setup-name:focus-visible {
@@ -105,7 +109,10 @@
   border: 2px solid rgb(43 29 18 / 0.2);
   border-radius: 999px;
   background: var(--paper);
-  padding: 0.3rem 0.75rem;
+  padding: 0 0.75rem;
+  /* Chrome ignores line-height on select and clips to its content box, which cut stacked
+     Thai marks (the "้" in "มิ้นท์"); a fixed height with no vertical padding leaves room. */
+  height: 2.4em;
 }
 
 .setup-remove {
