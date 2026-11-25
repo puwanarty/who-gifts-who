@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test } from 'vitest'
 import type { AppState } from '../types'
 import { initialState } from './appReducer'
 import { loadState, saveState, STORAGE_KEY } from './storage'
@@ -90,4 +90,31 @@ test('reveal without a current giver is normalized to board', () => {
 test('reveal with an unknown current giver is normalized to board', () => {
   const stored = JSON.stringify({ ...saved, phase: 'reveal', currentGiverId: 'zzz' })
   expect(loadState(memoryStorage({ [STORAGE_KEY]: stored }))).toEqual({ ...saved, phase: 'board' })
+})
+
+describe('when the browser blocks access to localStorage itself', () => {
+  let original: PropertyDescriptor | undefined
+
+  beforeEach(() => {
+    original = Object.getOwnPropertyDescriptor(globalThis, 'localStorage')
+    Object.defineProperty(globalThis, 'localStorage', {
+      configurable: true,
+      get() {
+        throw new DOMException('Access is denied for this document.', 'SecurityError')
+      },
+    })
+  })
+
+  afterEach(() => {
+    if (original) Object.defineProperty(globalThis, 'localStorage', original)
+    else delete (globalThis as { localStorage?: unknown }).localStorage
+  })
+
+  test('loadState falls back to the initial state', () => {
+    expect(loadState()).toEqual(initialState)
+  })
+
+  test('saveState does not throw', () => {
+    expect(() => saveState(saved)).not.toThrow()
+  })
 })

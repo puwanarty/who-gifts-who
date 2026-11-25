@@ -7,9 +7,11 @@ export const STORAGE_KEY = 'who-gifts-who:state:v1'
 
 const PHASES: readonly Phase[] = ['setup', 'board', 'reveal', 'summary']
 
-export function loadState(storage: Pick<Storage, 'getItem'> = globalThis.localStorage): AppState {
+// The default storage is resolved inside try: in some browsers merely reading
+// `localStorage` throws (site data blocked, sandboxed frames).
+export function loadState(storage?: Pick<Storage, 'getItem'>): AppState {
   try {
-    const raw = storage.getItem(STORAGE_KEY)
+    const raw = (storage ?? globalThis.localStorage).getItem(STORAGE_KEY)
     if (raw === null) return initialState
     return parseState(JSON.parse(raw)) ?? initialState
   } catch {
@@ -17,9 +19,9 @@ export function loadState(storage: Pick<Storage, 'getItem'> = globalThis.localSt
   }
 }
 
-export function saveState(state: AppState, storage: Pick<Storage, 'setItem'> = globalThis.localStorage): void {
+export function saveState(state: AppState, storage?: Pick<Storage, 'setItem'>): void {
   try {
-    storage.setItem(STORAGE_KEY, JSON.stringify(state))
+    ;(storage ?? globalThis.localStorage).setItem(STORAGE_KEY, JSON.stringify(state))
   } catch {
     // Storage can be unavailable (private mode, quota); the app keeps working in memory.
   }
