@@ -63,7 +63,12 @@ export function SetupScreen() {
         </header>
 
         {participants.length === 0 ? (
-          <p className="setup-empty">ยังไม่มีใครในรายชื่อ เพิ่มชื่อทุกคนที่มางาน แล้วเลือกคู่ให้คนที่มาด้วยกัน</p>
+          // A first-time visitor only sees this screen, so it explains the whole evening, not just this form.
+          <ol className="setup-steps">
+            <li>กรอกชื่อทุกคนที่มางาน ใครมากับคู่ให้เลือกคู่ไว้ จะได้ไม่จับได้กันเอง</li>
+            <li>เปิดบนจอใหญ่ แล้วให้ทุกคนผลัดกันมาแตะชื่อตัวเอง</li>
+            <li>กดลุ้นเปิดกล่องของขวัญ ดูพร้อมกันทั้งห้องว่าได้ซื้อให้ใคร</li>
+          </ol>
         ) : (
           <ol className="setup-list">
             {participants.map((person, index) => (

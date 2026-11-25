@@ -49,9 +49,36 @@
   font-size: 1.1rem;
 }
 
-.setup-empty {
-  margin: 0 0 1rem;
+.setup-steps {
+  counter-reset: setup-step;
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.setup-steps li {
+  counter-increment: setup-step;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.6rem;
   max-width: 34em;
+}
+
+/* Gift-tag style numbers in ribbon green, matching the board's name tags. */
+.setup-steps li::before {
+  content: counter(setup-step);
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--ribbon);
+  color: var(--paper);
+  font-weight: 700;
+  line-height: 1;
 }
 
 .setup-list {
