@@ -16,6 +16,8 @@
 
 html {
   overflow-x: hidden;
+  /* Scales every rem with the screen so a 4K TV at 1x zoom is as readable as a laptop. */
+  font-size: clamp(16px, calc(10px + 0.85vmin), 28px);
 }
 
 body {

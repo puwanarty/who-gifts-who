@@ -1,0 +1,197 @@
+.setup {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(1rem, 5vmin, 4rem) 16px;
+}
+
+.setup-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  background: var(--paper);
+  border-radius: 6px;
+  padding: clamp(2.25rem, 6vmin, 3.5rem) clamp(1rem, 4vmin, 2.5rem) clamp(1.25rem, 4vmin, 2.5rem);
+  box-shadow: 0 2px 0 rgb(43 29 18 / 0.15), 0 18px 40px -18px rgb(43 29 18 / 0.45);
+}
+
+/* The ribbon across the top marks the sheet as the gift list. */
+.setup-sheet::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.75rem;
+  background: var(--ribbon);
+  border-radius: 6px 6px 0 0;
+}
+
+.setup-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.setup-header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(2rem, 6vmin, 3rem);
+  line-height: 1.2;
+}
+
+.setup-count {
+  margin: 0;
+  color: var(--ribbon);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.setup-empty {
+  margin: 0 0 1rem;
+  max-width: 34em;
+}
+
+.setup-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.setup-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 2px dashed rgb(43 29 18 / 0.18);
+}
+
+.setup-name {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  padding: 0.35rem 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.setup-name::placeholder {
+  color: rgb(43 29 18 / 0.4);
+  font-weight: 500;
+}
+
+.setup-name:focus-visible {
+  outline: none;
+  border-bottom-color: var(--ribbon);
+}
+
+.setup-partner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.setup-partner-label {
+  font-size: 0.95rem;
+  color: rgb(43 29 18 / 0.7);
+}
+
+.setup-partner select {
+  width: 10rem;
+  border: 2px solid rgb(43 29 18 / 0.2);
+  border-radius: 999px;
+  background: var(--paper);
+  padding: 0.3rem 0.75rem;
+}
+
+.setup-remove {
+  border: 0;
+  background: transparent;
+  color: var(--box-red);
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+}
+
+.setup-remove:hover {
+  background: rgb(200 16 46 / 0.08);
+}
+
+.setup-add {
+  width: 100%;
+  border: 2px dashed rgb(43 29 18 / 0.35);
+  border-radius: 10px;
+  background: transparent;
+  padding: 0.7rem;
+  font-weight: 700;
+}
+
+.setup-add:hover {
+  border-color: var(--ribbon);
+  color: var(--ribbon);
+}
+
+.setup-messages {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 6px solid var(--box-red);
+  background: rgb(200 16 46 / 0.08);
+  border-radius: 4px;
+}
+
+.setup-messages p {
+  margin: 0;
+}
+
+.setup-messages p + p {
+  margin-top: 0.4rem;
+}
+
+.setup-start {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--box-red);
+  color: var(--paper);
+  padding: 0.85rem 1.5rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  box-shadow: 0 4px 0 var(--lid-red);
+}
+
+.setup-start:active {
+  translate: 0 3px;
+  box-shadow: 0 1px 0 var(--lid-red);
+}
+
+.setup-note {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: rgb(43 29 18 / 0.65);
+  text-align: center;
+}
+
+@media (max-width: 30rem) {
+  .setup-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .setup-name {
+    grid-column: 1 / -1;
+  }
+
+  .setup-partner {
+    min-width: 0;
+  }
+
+  .setup-partner select {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+  }
+}

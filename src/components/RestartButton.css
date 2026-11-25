@@ -1,0 +1,21 @@
+.restart-button {
+  position: fixed;
+  top: clamp(0.5rem, 2vmin, 1.5rem);
+  right: clamp(0.5rem, 2vmin, 1.5rem);
+  z-index: 10;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  opacity: 0.55;
+  font-size: clamp(0.85rem, 1.6vmin, 1.4rem);
+  padding: 0.4em 0.8em;
+  border-radius: 999px;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.restart-button:hover,
+.restart-button:focus-visible {
+  opacity: 1;
+  background: rgb(255 250 242 / 0.5);
+}
