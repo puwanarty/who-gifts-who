@@ -29,6 +29,13 @@ export function SetupScreen() {
     }
   }
 
+  function clearEveryone() {
+    if (window.confirm(`ลบรายชื่อทั้ง ${participants.length} คนและคู่ทั้งหมด? ย้อนกลับไม่ได้`)) {
+      dispatch({ type: 'clearParticipants' })
+      setMessages([])
+    }
+  }
+
   function startDraw() {
     const problems = validateParticipants(participants)
     if (problems.length > 0) {
@@ -133,6 +140,11 @@ export function SetupScreen() {
         </button>
 
         <p className="setup-note">ข้อมูลเก็บไว้ในเบราว์เซอร์นี้ ใช้เครื่องและเบราว์เซอร์เดิมตั้งแต่กรอกชื่อจนจบงาน</p>
+        {participants.length > 0 && (
+          <button type="button" className="setup-clear" onClick={clearEveryone}>
+            ล้างรายชื่อทั้งหมด
+          </button>
+        )}
       </div>
     </main>
   )

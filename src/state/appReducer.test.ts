@@ -68,11 +68,17 @@ describe('participants in setup', () => {
     expect(partnerIds(state)).toEqual({ b: null, c: null })
   })
 
+  test('clearParticipants empties the list in setup', () => {
+    const paired = appReducer(setupWith([alice, bob, carol]), { type: 'setPartner', id: 'a', partnerId: 'b' })
+    expect(appReducer(paired, { type: 'clearParticipants' })).toEqual(initialState)
+  })
+
   test('participant actions are ignored outside setup', () => {
     expect(appReducer(drawn, { type: 'addParticipant', id: 'x', name: 'X' })).toBe(drawn)
     expect(appReducer(drawn, { type: 'renameParticipant', id: 'a', name: 'X' })).toBe(drawn)
     expect(appReducer(drawn, { type: 'removeParticipant', id: 'a' })).toBe(drawn)
     expect(appReducer(drawn, { type: 'setPartner', id: 'a', partnerId: 'b' })).toBe(drawn)
+    expect(appReducer(drawn, { type: 'clearParticipants' })).toBe(drawn)
   })
 })
 

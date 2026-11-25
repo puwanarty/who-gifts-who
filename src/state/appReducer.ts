@@ -14,6 +14,7 @@ export type AppAction =
   | { type: 'renameParticipant'; id: string; name: string }
   | { type: 'removeParticipant'; id: string }
   | { type: 'setPartner'; id: string; partnerId: string | null }
+  | { type: 'clearParticipants' }
   | { type: 'startDraw'; assignments: Assignments }
   | { type: 'openReveal'; giverId: string }
   | { type: 'closeReveal' }
@@ -51,6 +52,10 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case 'setPartner':
       if (state.phase !== 'setup' || action.partnerId === action.id) return state
       return { ...state, participants: linkPartners(state.participants, action.id, action.partnerId) }
+
+    case 'clearParticipants':
+      if (state.phase !== 'setup') return state
+      return initialState
 
     case 'startDraw':
       if (state.phase !== 'setup') return state

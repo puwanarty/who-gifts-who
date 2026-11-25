@@ -190,6 +190,23 @@
   text-align: center;
 }
 
+.setup-clear {
+  display: block;
+  margin: 0.5rem auto 0;
+  border: 0;
+  background: transparent;
+  color: var(--box-red);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+}
+
+.setup-clear:hover {
+  background: rgb(200 16 46 / 0.08);
+}
+
 @media (max-width: 30rem) {
   .setup-row {
     grid-template-columns: minmax(0, 1fr) auto;
