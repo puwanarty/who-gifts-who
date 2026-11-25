@@ -1,63 +1,85 @@
 # Who Gifts Who
 
-แอปจับฉลากแลกของขวัญสำหรับงานเลี้ยง เปิดบนเครื่องเดียวที่ต่อจอใหญ่ ทุกคนเดินมาแตะชื่อตัวเอง กดลุ้น แล้วทั้งห้องดูไปพร้อมกันว่าใครได้ซื้อของขวัญให้ใคร คนที่มาเป็นคู่กันจะไม่จับได้คู่ของตัวเอง
+A gift-exchange name draw for parties, played together on one big screen.
 
-**เปิดใช้งาน:** https://puwanarty.github.io/who-gifts-who/
+**Live app:** https://puwanarty.github.io/who-gifts-who/
 
-ไม่ต้องสมัครหรือติดตั้งอะไร และไม่มีการส่งรายชื่อออกนอกเครื่อง
+![The reveal screen: the gift box lid has flown off and the name of the person to buy for is shown above the box](docs/screenshot.png)
 
-## วิธีใช้
+## About
 
-### ก่อนงาน: กรอกรายชื่อ
+Who Gifts Who runs a gift exchange at a year-end party. The host opens it on a laptop hooked up to a TV, and each guest walks up, taps their own name, and opens a gift box on screen to find out who they are buying a present for. The whole room watches every reveal together.
 
-1. เปิดแอปบนเครื่องที่จะใช้ในงาน เช่นโน้ตบุ๊กที่จะต่อทีวี
-2. กด **+ เพิ่มคน** แล้วพิมพ์ชื่อทุกคนที่มา กด Enter ที่ช่องสุดท้ายเพื่อเพิ่มแถวถัดไปได้เลย
-3. ถ้าใครมากับแฟนหรือคู่ ให้เลือกในช่อง **คู่กับ** แอปจะผูกให้ทั้งสองฝั่ง
-4. กด **เริ่มจับฉลาก**
+People who came as a couple never draw their own partner. The interface is in Thai; the steps below give each button's Thai label with an English gloss.
 
-แอปจะสุ่มผลของทุกคนไว้ทันทีตอนกดเริ่ม ทุกคนได้ให้ของขวัญ 1 คนและได้รับ 1 คน ไม่มีใครจับได้ตัวเองหรือคู่ของตัวเอง ถ้าจัดแบบนี้ไม่ได้เลย เช่นมีแค่คู่เดียวสองคน แอปจะบอกก่อนเริ่ม
+## Features
 
-### ระหว่างงาน: ผลัดกันมาลุ้น
+- **Couple-aware draw.** Nobody draws themselves or their partner, and every valid result is equally likely. If no valid draw exists, the app says so before the party starts.
+- **Gift-box reveal.** The box shakes to a drumroll, the lid flies off, and the name pops out with confetti.
+- **Built for a TV.** Text and the gift box scale with the screen, from a phone up to a 4K TV.
+- **Safe to refresh.** Results are fixed when the draw starts and saved in the browser, so a refresh mid-party changes nothing.
+- **Works offline.** After the first visit, the app runs with no internet connection.
+- **Party conveniences.** A sound toggle, a fullscreen button, and the screen stays awake while the app is open.
+- **Private by design.** There is no server and no account. Names never leave the device.
 
-1. หน้าจอจะแสดงชื่อคนที่ยังไม่ได้จับ ให้แต่ละคนเดินมาแตะชื่อตัวเอง
-2. กด **กดลุ้น** แล้วกล่องของขวัญจะสั่น เปิดออก และแสดงชื่อคนที่ต้องซื้อของขวัญให้
-3. กด **คนต่อไป** เพื่อกลับไปหน้ารายชื่อ
-4. เมื่อทุกคนจับครบ จะมีหน้าสรุปว่าใครซื้อของขวัญให้ใคร
+## How to use
 
-ผลแสดงให้ทุกคนในห้องเห็น แอปนี้ไม่มีโหมดจับแบบเก็บเป็นความลับ
+### Before the party
 
-### ปุ่มมุมจอ
+1. Open the app on the device you will use at the party.
+2. Press **+ เพิ่มคน** (add person) and type everyone's name. Press Enter in the last name field to add the next row.
+3. For each couple, choose the partner under **คู่กับ** (partner). Both sides are linked automatically.
+4. Press **เริ่มจับฉลาก** (start the draw).
 
-- **ปิดเสียง / เปิดเสียง** (ซ้ายบน): เสียงกลองตอนลุ้นและเสียงตอนกล่องเปิด แอปจำค่าที่เลือกไว้
-- **เต็มจอ** (ซ้ายบน): ซ่อนแถบเบราว์เซอร์ ไม่มีปุ่มนี้ในเบราว์เซอร์ที่ไม่รองรับ เช่น Safari บน iPhone
-- **เริ่มใหม่** (ขวาบน): ล้างผลจับฉลากทั้งหมดแล้วกลับไปหน้ากรอก รายชื่อและคู่ยังอยู่ กดแล้วจะสุ่มใหม่ทั้งหมด
+### During the party
 
-## เคล็ดลับสำหรับคนจัดงาน
+1. The board lists everyone who has not drawn yet. Each guest taps their own name.
+2. They press **กดลุ้น** (reveal). The box shakes, opens, and shows who they buy a gift for.
+3. Press **คนต่อไป** (next person) to return to the board.
+4. When everyone has drawn, a summary lists every pair.
 
-- **ใช้เครื่องและเบราว์เซอร์เดิมตั้งแต่กรอกจนจบงาน** รายชื่อและผลเก็บไว้ในเบราว์เซอร์นั้น ไม่ได้อยู่บนเซิร์ฟเวอร์ เปิดจากเครื่องอื่นจะไม่เห็นข้อมูล
-- **รีเฟรชได้ ผลไม่เปลี่ยน** ถ้าเผลอปิดหรือรีเฟรชกลางงาน เปิดใหม่แล้วจะอยู่ที่เดิม คนที่จับไปแล้วจะจับซ้ำไม่ได้
-- **ไม่มีเน็ตก็ใช้ได้** ขอแค่เคยเปิดแอปบนเครื่องนั้นสักครั้งตอนมีเน็ต
-- **ใช้คีย์บอร์ดหรือรีโมตพรีเซนต์ได้** ในหน้าลุ้น กด Space หรือ Enter แทนการกดปุ่ม **กดลุ้น** และ **คนต่อไป** ได้
-- **จอไม่ดับเอง** ระหว่างที่แอปเปิดอยู่ แอปจะขอให้จอเปิดค้างไว้ในเบราว์เซอร์ที่รองรับ
-- **เปิดไว้แท็บเดียว** ถ้าเปิดสองแท็บพร้อมกัน ข้อมูลจะเขียนทับกัน
-- **ล้างข้อมูลหลังงาน** ใช้ปุ่ม **ล้างรายชื่อทั้งหมด** ด้านล่างหน้ากรอก โดยเฉพาะถ้ายืมเครื่องคนอื่นมาจัด
+### Screen controls
 
-## สำหรับนักพัฒนา
+| Control | Where | What it does |
+| --- | --- | --- |
+| **ปิดเสียง / เปิดเสียง** (sound off / on) | Top left | Turns the drumroll and reveal sounds off or on. The choice is remembered. |
+| **เต็มจอ** (fullscreen) | Top left | Hides the browser bar. Not shown where the browser does not support it, such as Safari on iPhone. |
+| **เริ่มใหม่** (start over) | Top right | Clears all results and returns to setup. Names and couples are kept; the next draw is new. |
+| **ล้างรายชื่อทั้งหมด** (clear all names) | Bottom of setup | Deletes every name and couple after a confirmation. |
 
-สร้างด้วย Vite, React, TypeScript และ Motion ไม่มี backend
+## Tips
+
+- **Use the same device and browser from setup to the end.** Everything is stored in that browser; another device will not see it.
+- **Space or Enter works on the reveal screen**, so a keyboard or a presentation clicker can run the show.
+- **Keep the app in one tab.** Two open tabs overwrite each other's data.
+- **Clear the names afterwards** if you borrowed someone else's laptop.
+
+## Development
+
+Built with [Vite](https://vite.dev/), [React](https://react.dev/), TypeScript, and [Motion](https://motion.dev/). The font is [Mali](https://fonts.google.com/specimen/Mali), bundled with the app. Sounds are synthesized with the Web Audio API, so there are no audio files.
+
+Developed and deployed with Node.js 22.
 
 ```sh
 npm install
-npm run dev        # เปิดเซิร์ฟเวอร์สำหรับพัฒนา
-npm test           # รันเทสต์
-npm run typecheck
-npm run lint
-npm run build      # สร้างไฟล์ไว้ใน dist/
+npm run dev        # start the dev server
+npm test           # run the tests
+npm run typecheck  # type-check
+npm run lint       # lint with oxlint
+npm run build      # build into dist/
 ```
 
-### นำไปโฮสต์เอง
+## Deployment
 
-ทุกครั้งที่ push เข้า `main` workflow ใน `.github/workflows/deploy.yml` จะรันเทสต์ build แล้ว deploy ขึ้น GitHub Pages ถ้า fork ไปใช้เอง:
+Every push to `main` runs [the deploy workflow](.github/workflows/deploy.yml): it tests, builds, and publishes to GitHub Pages.
 
-1. ถ้าตั้งชื่อ repo เป็นอย่างอื่น ให้แก้ `base` ใน `vite.config.ts` ให้ตรงกับชื่อนั้น
-2. ใน Settings → Pages ของ repo ตั้ง Source เป็น **GitHub Actions**
+To host your own copy:
+
+1. Fork the repository. If you rename it, change `base` in [`vite.config.ts`](vite.config.ts) to `/<your-repo-name>/`.
+2. Update the absolute URLs in the link-preview tags in [`index.html`](index.html) (`og:url` and `og:image`).
+3. In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**.
+4. Push to `main`.
+
+## License
+
+[MIT](LICENSE)
