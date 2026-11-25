@@ -1,0 +1,103 @@
+.board {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vmin, 2.5rem);
+  padding: clamp(3rem, 7vmin, 5rem) 16px clamp(1.5rem, 4vmin, 3rem);
+}
+
+.board-title {
+  margin: 0;
+  max-width: 24em;
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 5vmin, 3.5rem);
+  line-height: 1.25;
+}
+
+/* Thai has no spaces between words; keep each phrase whole so the line never breaks mid-word. */
+.board-title span {
+  display: inline-block;
+}
+
+.board-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 90rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.6rem, 1.8vmin, 1.25rem);
+}
+
+/* Each name is a paper gift tag with a punched hole on the left. */
+.board-tag {
+  position: relative;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3.6vmin, 2.6rem);
+  line-height: 1.3;
+  padding: 0.45em 0.9em 0.45em 1.6em;
+  border-radius: 0.25em 0.6em 0.6em 0.25em;
+  clip-path: polygon(0.7em 0, 100% 0, 100% 100%, 0.7em 100%, 0 50%);
+  box-shadow: inset 0 -0.12em 0 rgb(43 29 18 / 0.12);
+  transition: translate 0.15s, background-color 0.15s;
+}
+
+.board-tag::before {
+  content: '';
+  position: absolute;
+  left: 0.75em;
+  top: 50%;
+  width: 0.32em;
+  height: 0.32em;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: var(--kraft);
+  box-shadow: 0 0 0 0.08em var(--ribbon);
+}
+
+.board-tag:hover {
+  translate: 0 -0.08em;
+  background: #fff;
+}
+
+.board-tag:focus-visible {
+  outline-offset: 4px;
+}
+
+.board-done {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem 0.75rem;
+  max-width: 90rem;
+  margin-top: auto;
+  color: rgb(43 29 18 / 0.7);
+  font-size: clamp(1rem, 2.2vmin, 1.6rem);
+}
+
+.board-done h2 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--ribbon);
+}
+
+.board-done ul {
+  display: contents;
+  list-style: none;
+}
+
+.board-done li {
+  text-decoration: line-through;
+  text-decoration-color: rgb(43 29 18 / 0.35);
+}

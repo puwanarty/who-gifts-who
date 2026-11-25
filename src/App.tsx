@@ -1,4 +1,6 @@
+import { BoardScreen } from './screens/BoardScreen'
 import { SetupScreen } from './screens/SetupScreen'
+import { SummaryScreen } from './screens/SummaryScreen'
 import { useAppState } from './state/AppStateContext'
 
 export default function App() {
@@ -8,9 +10,28 @@ export default function App() {
     case 'setup':
       return <SetupScreen />
     case 'board':
+      return <BoardScreen />
     case 'reveal':
+      return <TemporaryReveal />
     case 'summary':
-      // Placeholder until the board, reveal and summary screens exist.
-      return <main>{state.phase}</main>
+      return <SummaryScreen />
   }
+}
+
+// Stand-in until the gift-box reveal screen exists.
+function TemporaryReveal() {
+  const { dispatch } = useAppState()
+  return (
+    <main>
+      <button
+        type="button"
+        onClick={() => {
+          dispatch({ type: 'markRevealed' })
+          dispatch({ type: 'finishReveal' })
+        }}
+      >
+        reveal
+      </button>
+    </main>
+  )
 }
