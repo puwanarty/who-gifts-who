@@ -74,9 +74,12 @@
   border: 0;
   border-bottom: 2px solid transparent;
   background: transparent;
-  padding: 0.35rem 0.25rem;
+  padding: 0 0.25rem;
   font-size: 1.25rem;
   font-weight: 700;
+  /* Chrome clips typed text to the line box, and a tone mark stacked on an upper vowel
+     (the "่" in "พี่หยก") rises past 1.5; the taller line replaces the vertical padding. */
+  line-height: 2;
 }
 
 .setup-name::placeholder {
