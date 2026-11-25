@@ -7,6 +7,9 @@ import { useAppState } from '../state/AppStateContext'
 import './RevealScreen.css'
 
 const SHAKE_DURATION_MS = 2400
+// Extra presses from an excited guest would otherwise hit "next" the instant the box opens
+// and dismiss the result before the room sees it.
+const FINISH_GUARD_MS = 1000
 
 /** Rendered with `key={currentGiverId}` so each giver starts with fresh local state. */
 export function RevealScreen() {
@@ -18,9 +21,19 @@ export function RevealScreen() {
   // A giver who was revealed before this screen mounted (a refresh mid-reveal) shows the open box without replaying.
   const [openedOnMount] = useState(alreadyRevealed)
   const [stage, setStage] = useState<GiftBoxStage>(alreadyRevealed ? 'opened' : 'idle')
-  const shakeTimer = useRef<number | undefined>(undefined)
+  const [canFinish, setCanFinish] = useState(alreadyRevealed)
+  const timers = useRef<number[]>([])
 
-  useEffect(() => () => window.clearTimeout(shakeTimer.current), [])
+  useEffect(() => () => timers.current.forEach((timer) => window.clearTimeout(timer)), [])
+
+  function later(callback: () => void, delayMs: number) {
+    timers.current.push(window.setTimeout(callback, delayMs))
+  }
+
+  function open() {
+    setStage('opened')
+    later(() => setCanFinish(true), FINISH_GUARD_MS)
+  }
 
   const everyoneRevealed = state.participants.every((person) => state.revealedGiverIds.includes(person.id))
 
@@ -29,14 +42,15 @@ export function RevealScreen() {
     // Mark first, so a refresh during the animation cannot give this person a second reveal.
     dispatch({ type: 'markRevealed' })
     if (reducedMotion) {
-      setStage('opened')
+      open()
       return
     }
     setStage('shaking')
-    shakeTimer.current = window.setTimeout(() => setStage('opened'), SHAKE_DURATION_MS)
+    later(open, SHAKE_DURATION_MS)
   }
 
   function finish() {
+    if (!canFinish) return
     dispatch({ type: 'finishReveal' })
   }
 
@@ -113,7 +127,7 @@ export function RevealScreen() {
             )}
           </>
         ) : (
-          <button type="button" className="reveal-primary" onClick={finish}>
+          <button type="button" className="reveal-primary" onClick={finish} disabled={!canFinish}>
             {everyoneRevealed ? 'ดูสรุปทั้งหมด' : 'คนต่อไป'}
           </button>
         )}
