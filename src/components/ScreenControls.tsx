@@ -1,6 +1,7 @@
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useState } from 'react'
 import { setSoundMuted } from '../sound/sound'
 import { loadMuted, saveMuted } from '../sound/soundPreference'
+import { releaseFocus } from './releaseFocus'
 import './ScreenControls.css'
 
 /** Sound and fullscreen toggles, shown on every screen for whoever runs the party laptop. */
@@ -38,13 +39,4 @@ export function ScreenControls() {
       )}
     </div>
   )
-}
-
-/**
- * The reveal screen leaves Space/Enter to whichever button has focus, so a button still focused
- * after a mouse click would swallow the next "กดลุ้น" keypress. Keyboard presses (detail 0) keep focus.
- */
-function releaseFocus(event: MouseEvent<HTMLButtonElement>, action: () => void) {
-  if (event.detail > 0) event.currentTarget.blur()
-  action()
 }

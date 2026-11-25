@@ -1,4 +1,5 @@
 import { useAppState } from '../state/AppStateContext'
+import { releaseFocus } from './releaseFocus'
 import './RestartButton.css'
 
 export function RestartButton() {
@@ -11,7 +12,7 @@ export function RestartButton() {
   }
 
   return (
-    <button type="button" className="restart-button" onClick={restart}>
+    <button type="button" className="restart-button" onClick={(event) => releaseFocus(event, restart)}>
       เริ่มใหม่
     </button>
   )
