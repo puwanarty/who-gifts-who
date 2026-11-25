@@ -1,8 +1,6 @@
 # Who Gifts Who
 
-A gift-exchange name draw for parties, played together on one big screen.
-
-**Live:** https://puwanarty.github.io/who-gifts-who/
+A gift-exchange name draw for parties, played together on one big screen. [Open the app](https://puwanarty.github.io/who-gifts-who/)
 
 ![The reveal screen: the gift box lid has flown off and the name of the person to buy for is shown above the box](docs/screenshot.png)
 
@@ -10,7 +8,7 @@ Open it on a laptop hooked up to a TV. Each guest walks up, taps their own name,
 
 ## Features
 
-- **Couple-aware draw:** nobody draws themselves or their partner, and every valid result is equally likely.
+- **Fair draw:** every valid result is equally likely, and if couples make a draw impossible, the app says so before the party.
 - **Gift-box reveal** with a drumroll, a flying lid, and confetti.
 - **Scales from a phone to a 4K TV.**
 - **Safe to refresh, works offline:** results are fixed when the draw starts and kept in the browser.
@@ -36,7 +34,3 @@ npm run build   # build into dist/
 ```
 
 Pushes to `main` deploy to GitHub Pages through [the deploy workflow](.github/workflows/deploy.yml). For a fork, set `base` in `vite.config.ts` to your repository name, update the URLs in the `og:` tags in `index.html`, and set **Settings → Pages → Source** to **GitHub Actions**.
-
-## License
-
-[MIT](LICENSE)
