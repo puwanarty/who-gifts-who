@@ -16,11 +16,11 @@ Open it on a laptop hooked up to a TV. Each guest walks up, taps their own name,
 
 ## Usage
 
-1. Add everyone with **+ เพิ่มคน** (add person), pick each couple under **คู่กับ** (partner), then press **เริ่มจับฉลาก** (start the draw).
-2. Each guest taps their name and presses **กดลุ้น** (reveal). **คนต่อไป** (next) returns to the list. Space or Enter also works, so a presentation clicker can run the show.
+1. Add everyone, pick each person's partner if they came as a couple, then start the draw.
+2. Each guest taps their name and presses the reveal button, and the next button returns to the list. Space or Enter also works, so a presentation clicker can run the show.
 3. After the last reveal, a summary lists every pair.
 
-Everything is stored in the browser, so use the same one from setup to the end, in a single tab. The top corners hold sound, fullscreen, and **เริ่มใหม่** (start over, keeps the names).
+Everything is stored in the browser, so use the same one from setup to the end, in a single tab. The top corners hold sound, fullscreen, and a start-over button that keeps the names.
 
 ## Development
 
