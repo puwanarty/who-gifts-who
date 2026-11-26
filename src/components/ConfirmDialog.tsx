@@ -1,4 +1,4 @@
-import { useEffect, useRef, type KeyboardEvent, type MouseEvent, type SyntheticEvent } from 'react'
+import { useEffect, useId, useRef, type KeyboardEvent, type MouseEvent, type SyntheticEvent } from 'react'
 import './ConfirmDialog.css'
 
 type ConfirmDialogProps = {
@@ -16,6 +16,7 @@ type ConfirmDialogProps = {
 export function ConfirmDialog({ open, message, confirmLabel, onConfirm, onCancel }: ConfirmDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const cancelRef = useRef<HTMLButtonElement>(null)
+  const messageId = useId()
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -53,12 +54,14 @@ export function ConfirmDialog({ open, message, confirmLabel, onConfirm, onCancel
     <dialog
       ref={dialogRef}
       className="confirm-dialog"
+      // Focus lands on the cancel button, so without this a screen reader announces "ยกเลิก" but not the question.
+      aria-describedby={messageId}
       onCancel={onNativeCancel}
       onClick={onDialogClick}
       onKeyDown={onDialogKeyDown}
     >
       <div className="confirm-dialog-card">
-        <p className="confirm-dialog-message">{message}</p>
+        <p id={messageId} className="confirm-dialog-message">{message}</p>
         <div className="confirm-dialog-actions">
           <button ref={cancelRef} type="button" className="confirm-dialog-cancel" onClick={onCancel}>
             ยกเลิก
