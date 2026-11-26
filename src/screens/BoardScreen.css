@@ -73,6 +73,18 @@
   outline-offset: 4px;
 }
 
+/* The last guest's tag: clip-path cuts off outer borders and outlines, so the red accent is drawn inside the shape. */
+.board-tag-last {
+  font-size: clamp(1.75rem, 5vmin, 3.6rem);
+  box-shadow:
+    inset 0 0 0 0.1em var(--box-red),
+    inset 0 -0.12em 0 rgb(43 29 18 / 0.12);
+}
+
+.board-tag-last::before {
+  box-shadow: 0 0 0 0.08em var(--box-red);
+}
+
 .board-done {
   display: flex;
   flex-wrap: wrap;

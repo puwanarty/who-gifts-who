@@ -5,9 +5,13 @@ import { GiftBox, type GiftBoxStage } from '../components/GiftBox'
 import { RestartButton } from '../components/RestartButton'
 import { playDrumroll, playReveal } from '../sound/sound'
 import { useAppState } from '../state/AppStateContext'
+import { isLastGiver } from '../state/isLastGiver'
 import './RevealScreen.css'
 
 const SHAKE_DURATION_MS = 2400
+// The last guest has nothing left to guess, so their turn is staged as the finale instead: a longer roll and a bigger burst.
+const LAST_SHAKE_DURATION_MS = 4000
+const LAST_CONFETTI_PIECES = 150
 // Extra presses from an excited guest would otherwise hit "next" the instant the box opens
 // and dismiss the result before the room sees it.
 const FINISH_GUARD_MS = 1000
@@ -18,6 +22,7 @@ export function RevealScreen() {
   const reducedMotion = useReducedMotion() ?? false
   const giverId = state.currentGiverId
   const alreadyRevealed = giverId !== null && state.revealedGiverIds.includes(giverId)
+  const isLast = giverId !== null && isLastGiver(state, giverId)
 
   // A giver who was revealed before this screen mounted (a refresh mid-reveal) shows the open box without replaying.
   const [openedOnMount] = useState(alreadyRevealed)
@@ -54,9 +59,10 @@ export function RevealScreen() {
       open()
       return
     }
+    const shakeMs = isLast ? LAST_SHAKE_DURATION_MS : SHAKE_DURATION_MS
     setStage('shaking')
-    stopDrumroll.current = playDrumroll(SHAKE_DURATION_MS)
-    later(open, SHAKE_DURATION_MS)
+    stopDrumroll.current = playDrumroll(shakeMs)
+    later(open, shakeMs)
   }
 
   function finish() {
@@ -92,7 +98,8 @@ export function RevealScreen() {
       {stage !== 'shaking' && <RestartButton />}
 
       <p className="reveal-turn">
-        ตาของ <strong>{giverName}</strong>
+        {isLast ? 'คนสุดท้าย: ' : 'ตาของ '}
+        <strong>{giverName}</strong>
       </p>
 
       <div className="reveal-stage">
@@ -111,7 +118,7 @@ export function RevealScreen() {
         </div>
         <div className="reveal-box">
           <GiftBox stage={stage} reducedMotion={reducedMotion} />
-          <Confetti active={isOpened && !skipEntrance} />
+          <Confetti active={isOpened && !skipEntrance} pieceCount={isLast ? LAST_CONFETTI_PIECES : undefined} />
         </div>
         <p className="reveal-line">
           {isOpened ? (

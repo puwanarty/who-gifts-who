@@ -6,19 +6,20 @@ export function BoardScreen() {
   const { state, dispatch } = useAppState()
   const waiting = state.participants.filter((person) => !state.revealedGiverIds.includes(person.id))
   const done = state.participants.filter((person) => state.revealedGiverIds.includes(person.id))
+  const onlyOneLeft = waiting.length === 1
 
   return (
     <main className="board">
       <RestartButton />
       <h1 className="board-title">
-        <span>ใครยังไม่ได้จับ</span> <span>แตะชื่อตัวเองเลย</span>
+        <span>{onlyOneLeft ? 'คนสุดท้ายแล้ว!' : 'ใครยังไม่ได้จับ'}</span> <span>แตะชื่อตัวเองเลย</span>
       </h1>
       <ul className="board-tags">
         {waiting.map((person) => (
           <li key={person.id}>
             <button
               type="button"
-              className="board-tag"
+              className={onlyOneLeft ? 'board-tag board-tag-last' : 'board-tag'}
               onClick={() => dispatch({ type: 'openReveal', giverId: person.id })}
             >
               {person.name}
