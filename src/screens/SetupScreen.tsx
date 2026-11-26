@@ -1,4 +1,5 @@
 import { useRef, useState, type KeyboardEvent } from 'react'
+import { ConfirmDialog } from '../components/ConfirmDialog'
 import { drawAssignments } from '../draw/drawAssignments'
 import { useAppState } from '../state/AppStateContext'
 import { validateParticipants, type SetupProblem } from '../state/validateParticipants'
@@ -11,6 +12,7 @@ export function SetupScreen() {
   const { state, dispatch } = useAppState()
   const { participants } = state
   const [messages, setMessages] = useState<string[]>([])
+  const [confirmingClear, setConfirmingClear] = useState(false)
   // The row for a newly added person mounts on the next render; its input focuses itself then.
   const idToFocus = useRef<string | null>(null)
 
@@ -30,10 +32,9 @@ export function SetupScreen() {
   }
 
   function clearEveryone() {
-    if (window.confirm(`ลบรายชื่อทั้ง ${participants.length} คนและคู่ทั้งหมด? ย้อนกลับไม่ได้`)) {
-      dispatch({ type: 'clearParticipants' })
-      setMessages([])
-    }
+    setConfirmingClear(false)
+    dispatch({ type: 'clearParticipants' })
+    setMessages([])
   }
 
   function startDraw() {
@@ -146,10 +147,18 @@ export function SetupScreen() {
 
         <p className="setup-note">ข้อมูลเก็บไว้ในเบราว์เซอร์นี้ ใช้เครื่องและเบราว์เซอร์เดิมตั้งแต่กรอกชื่อจนจบงาน</p>
         {participants.length > 0 && (
-          <button type="button" className="setup-clear" onClick={clearEveryone}>
+          <button type="button" className="setup-clear" onClick={() => setConfirmingClear(true)}>
             ล้างรายชื่อทั้งหมด
           </button>
         )}
+        {/* Outside the conditional above: confirming empties the list, which unmounts the button. */}
+        <ConfirmDialog
+          open={confirmingClear}
+          message={`ลบรายชื่อทั้ง ${participants.length} คนและคู่ทั้งหมด? ย้อนกลับไม่ได้`}
+          confirmLabel="ลบทั้งหมด"
+          onConfirm={clearEveryone}
+          onCancel={() => setConfirmingClear(false)}
+        />
       </div>
     </main>
   )

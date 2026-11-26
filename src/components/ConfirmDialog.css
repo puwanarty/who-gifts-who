@@ -1,0 +1,68 @@
+/* No padding of its own: the card fills the dialog, so clicks on the dialog element are backdrop clicks. */
+.confirm-dialog {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  max-width: min(36rem, 100vw - 32px);
+  width: 100%;
+}
+
+.confirm-dialog::backdrop {
+  background: rgb(43 29 18 / 0.55);
+}
+
+.confirm-dialog-card {
+  background: var(--paper);
+  border-radius: 6px;
+  border-top: 0.4em solid var(--box-red);
+  padding: clamp(1.25rem, 4vmin, 2.5rem);
+  font-size: clamp(1.1rem, 2.8vmin, 2.2rem);
+  line-height: 1.45;
+  box-shadow: 0 1em 2.5em rgb(43 29 18 / 0.35);
+}
+
+.confirm-dialog-message {
+  margin: 0 0 1.2em;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.confirm-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6em;
+}
+
+.confirm-dialog-actions button {
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95em;
+  padding: 0.4em 1.3em;
+}
+
+.confirm-dialog-cancel {
+  border: 0.12em solid var(--ink);
+  background: transparent;
+}
+
+.confirm-dialog-cancel:hover {
+  background: rgb(43 29 18 / 0.06);
+}
+
+.confirm-dialog-confirm {
+  border: 0.12em solid var(--box-red);
+  background: var(--box-red);
+  color: var(--paper);
+}
+
+.confirm-dialog-confirm:hover {
+  background: var(--lid-red);
+  border-color: var(--lid-red);
+}
+
+.confirm-dialog-actions button:focus-visible {
+  outline: 0.15em solid var(--ribbon);
+  outline-offset: 0.15em;
+}
